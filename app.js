@@ -5,6 +5,7 @@ import express from 'express';
 const app = express();
 import orderResource from "./resources/orderResource.js"
 
+app.use(express.json());
 app.use(orderResource);
 
 app.get('/', function (req, res) {
