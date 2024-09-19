@@ -16,7 +16,7 @@ const createUser = async (userData) => {
 
         return newUser;
     } catch (error) {
-        throw new Error('Error creating user', 500);
+        throw new Error('Error creating user', 400);
     }
 };
 
