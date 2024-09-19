@@ -1,10 +1,14 @@
-require('dotenv').config();
-var express = require('express')
-var app = express()
-const queries = require('./queries')
+
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+const app = express();
+import orderResource from "./resources/orderResource.js"
+
+app.use(orderResource);
 
 app.get('/', function (req, res) {
-  queries.getAll().then(results => res.send(results))
+  res.send('Home')
 })
 
 app.listen(3000, function () {
