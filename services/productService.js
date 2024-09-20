@@ -1,4 +1,5 @@
-import { getProduct } from '../utils/queries.js'; 
+import { getProduct } from '../utils/queries.js';
+import logger from '../utils/logger.js';
 
 export const retrieveProduct = async (product_id) => {
     try {
@@ -6,6 +7,7 @@ export const retrieveProduct = async (product_id) => {
 
         return product
     } catch (error) {
-        throw new Error('Error creating product', 400);
+        logger.error(`Error Retrieving Product: ${error.message}`);
+        throw new Error(`Error Retrieving Product: ${error.message}`, 400);
     }
 };

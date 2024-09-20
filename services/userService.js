@@ -1,22 +1,25 @@
-import { getUser, addUser } from '../utils/queries.js'; 
+import { getUser, addUser } from '../utils/queries.js';
+import logger from '../utils/logger.js';
 
 const findUserByPhoneNumber = async (phone_number) => {
     try {
         const user = await getUser(phone_number);
-
+        logger.info(`User Found: ${JSON.stringify(user)}`);
         return user;
     } catch (error) {
-        throw new Error('Error fetching user from database', 400);
+        logger.error(`Error Fetching User From Database: ${error.message}`);
+        throw new Error(`Error Fetching User From Database: ${error.message}`, 400);
     }
 };
 
 const createUser = async (userData) => {
     try {
         const [newUser] = await addUser(userData)
-
+        logger.info(`User Created: ${JSON.stringify(newUser)}`);
         return newUser;
     } catch (error) {
-        throw new Error('Error creating user', 400);
+        logger.error(`Error Creating User: ${error.message}`);
+        throw new Error(`Error Creating User: ${error.message}`, 400);
     }
 };
 

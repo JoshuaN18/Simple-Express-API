@@ -1,4 +1,5 @@
-import { addOrder } from '../utils/queries.js'; 
+import { addOrder } from '../utils/queries.js';
+import logger from '../utils/logger.js';
 
 export const createOrder = async (user_id, product_id) => {
     try {
@@ -6,6 +7,7 @@ export const createOrder = async (user_id, product_id) => {
 
         return order;
     } catch (error) {
-        throw new Error('Error creating order', 400);
+        logger.error(`Error Creating Order: ${error.message}`);
+        throw new Error(`Error Creating Order: ${error.message}`, 400);
     }
 };
